@@ -50,6 +50,8 @@ class Maze:
         if ml.column - 1 >= 0 and self._grid[ml.row][ml.column - 1] != Cell.BLOCKED:
             locations.append(MazeLocation[ml.row, ml.column - 1])
 
+        return locations
+
     def __str__(self) -> str:
         output: str = ""
         for row in self._grid:
