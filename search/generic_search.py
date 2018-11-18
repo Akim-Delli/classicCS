@@ -36,7 +36,6 @@ class Node(Generic[T]):
 
 
 def dfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], List[T]]) -> Optional[Node[T]]:
-
     # frontier is where we've yet to go
     frontier: Stack[Node[T]] = Stack()
     frontier.push(Node(initial, None))
@@ -70,4 +69,3 @@ def node_to_path(node: Node[T]) -> List[T]:
     path.reverse()
 
     return path
-
