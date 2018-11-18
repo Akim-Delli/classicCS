@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 from typing import Generic, TypeVar, Optional, Callable, List, Set
+
 T = TypeVar('T')
 
 
@@ -57,3 +59,14 @@ def dfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], Li
             frontier.push(Node(child, current_node))
     # went through everything and never found goal
     return None
+
+
+def node_to_path(node: Node[T]) -> List[T]:
+    path: List[T] = [node.state]
+    # work backwards from end to front
+    while node.parent is not None:
+        node = node.parent
+        path.append(node.state)
+    path.reverse()
+
+    return path
