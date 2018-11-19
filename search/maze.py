@@ -4,7 +4,7 @@ import random
 from enum import Enum
 from typing import List, NamedTuple, Optional
 
-from search.generic_search import dfs, node_to_path
+from search.generic_search import dfs, bfs, node_to_path
 
 
 class Cell(str, Enum):
@@ -76,14 +76,29 @@ class Maze:
 
 
 if __name__ == '__main__':
-    # Test DFS
     maze: Maze = Maze()
     print(maze)
+    # Test Depth-First Search
     solution1: Optional[Node[MazeLocation]] = dfs(maze.start, maze.goal_test, maze.successors)
+
     if solution1 is None:
         print("No solution found using depth-first search!")
     else:
+        print('Depth-first Search')
         path1: List[MazeLocation] = node_to_path(solution1)
         maze.mark(path1)
         print(maze)
         maze.clear(path1)
+
+    print("==" * 20)
+
+    # Test Breadth-First Search
+    solution2: Optional[Node[MazeLocation]] = bfs(maze.start, maze.goal_test, maze.successors)
+    if solution2 is None:
+        print("No solution found using breadth-first search!")
+    else:
+        print('Breadth-first Search')
+        path2: List[MazeLocation] = node_to_path(solution2)
+        maze.mark(path2)
+        print(maze)
+        maze.clear(path2)
