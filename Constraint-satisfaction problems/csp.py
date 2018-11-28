@@ -15,5 +15,5 @@ class Constraints(Generic[V, D], ABC):
 
     # Must be overridden by subclasses
     @abstractmethod
-    def satisfied(self, assignement: Dict[V, D]) -> bool:
+    def satisfied(self, assignment: Dict[V, D]) -> bool:
         pass
