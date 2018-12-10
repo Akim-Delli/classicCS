@@ -32,7 +32,7 @@ class CSP(Generic[V, D]):
         for variable in self.variables:
             self.constraints[variable] = []
             if variable not in self.domains:
-                raise LookupError("Every variable should have a doamin assigned to it.")
+                raise LookupError("Every variable should have a domain assigned to it.")
 
     def add_constraint(self, constraint: Constraint[V, D]) -> None:
         for variable in constraint.variables:
@@ -44,8 +44,8 @@ class CSP(Generic[V, D]):
     # Check if the value assignement is consistent by checking all constraints
     # for the given variable against it
     def consistent(self, variable: V, assignement: Dict[V, D]) -> bool:
-        for constraint in self.contraints[variable]:
-            if not constraint.satistfied(assignement):
+        for constraint in self.constraints[variable]:
+            if not constraint.satisfied(assignement):
                 return False
         return True
 
